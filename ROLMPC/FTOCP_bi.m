@@ -56,7 +56,7 @@ Constraints=[Constraints;
 Cost=0;
 for i=1:N        
     Cost = Cost + P*t(1,i);
-    Constraints=[Constraints; s_f-x(1,i)<=t];
+    Constraints=[Constraints; s_f-x(1,i)<=t(1,i)];
 end 
 
 % Terminal cost as convex combination of stored cost-to-go
@@ -70,7 +70,7 @@ options.ipopt.tol=1e-2;
 
 Problem = optimize(Constraints,Cost,options);
 if Problem.problem==1
-    display("oh no")
+    display("sub-optimal")
     x=x_guess;
     u=u_guess;
     K=2/R/pi*atan(100-.5*x_guess(1,end)^2);

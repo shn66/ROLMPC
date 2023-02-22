@@ -122,9 +122,12 @@ while (j <= Iterations)
                                                  s_f, Xt, Ut, E, x_guess, u_guess, lmbd_guess, t_guess, LMPC_options.solver);
             un_LMPC(:,t) = double(uPred(:,2));         
         end
-        u_LMPC(:,t) = un_LMPC(:,t)+F*(x_LMPC(:,t)-xn_LMPC(:,t));
-        xn_LMPC(:,t)=double(xPred(:,1));
+        
+        
         % Update system position
+        
+        xn_LMPC(:,t)=double(xPred(:,1));
+        u_LMPC(:,t) = un_LMPC(:,t)+F*(x_LMPC(:,t)-xn_LMPC(:,t));
             
         x_LMPC(:,t+1)=state_update_bicycle(x_LMPC(:,t),u_LMPC(:,t));
         xn_LMPC(:,t+1)=state_update_bicycle(xn_LMPC(:,t),un_LMPC(:,t));
