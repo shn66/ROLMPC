@@ -94,12 +94,9 @@ x0 = x_cl{1}(:,1);
 format long
 clc
 for i = 1:Iterations+1
-%     SS = [SS, x_cl{i}];
-%     SSu = [SSu, u_cl{i}];
-%     fprintf('Iteration cost at iteration %d:  %13.4f\n', [i, IterationCost{i}(1)]);
-    ItCost(i)=IterationCost{i}(1);
+    TrajCosts(i)=IterationCost{i}(1);
 end
-[TrajCosts, Order]=sort(ItCost, 'Ascend')
+
 %%
 SS = [];
 SSn= [];
