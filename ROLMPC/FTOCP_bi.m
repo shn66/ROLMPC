@@ -56,7 +56,7 @@ Constraints=[Constraints;
 Cost=0;
 for i=1:N        
     Cost = Cost + P*t(1,i);
-    Constraints=[Constraints; s_f-x(1,i)<=t(1,i)];
+    Constraints=[Constraints; s_f+2-x(1,i)<=t(1,i)];
 end 
 
 % Terminal cost as convex combination of stored cost-to-go
@@ -78,7 +78,7 @@ if Problem.problem==1
     u_guess=[u_guess(:,2:end) u_f];
     x_guess=[x_guess(:,2:end) x_guess(:,end)+dt*[u_f(1)*cos(x_guess(3,end))/(1-x_guess(2,end)*K);u_f(1)*sin(x_guess(3,end));u_f(1)*(sin(u_f(2))/L-K*cos(x_guess(3,end))/(1-x_guess(2,end)*K))]];
     lmbd_guess=zeros(length(Qfun),1);
-    t_guess=max(s_f-x_guess(1,2:end),0);
+    t_guess=max(s_f+2-x_guess(1,2:end),0);
 else
 y_f=double(y_f);
 K=2/R/pi*atan(100-.5*y_f(1)^2);
